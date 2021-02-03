@@ -1,0 +1,4 @@
+node_modules
+package-lock.json
+.env
+2fa-js-1.0.0.tgz

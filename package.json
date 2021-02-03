@@ -1,0 +1,16 @@
+{
+  "name": "2fa-js",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": "totp, hotp, time based one time password, authenticator, google authenticator, microsoft authenticator, 2fa, two factor, 2 factor, password, authentication, otp message, oauth, fido, Node, javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "open-soft-empire",
+  "license": "ISC",
+  "dependencies": {
+    "hi-base32": "^0.5.0",
+    "qrcode": "^1.4.4"
+  }
+}
