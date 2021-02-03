@@ -1,1 +1,1 @@
-Welcome to 2fa-js
+Welcome to 2fa-js to manage otp
