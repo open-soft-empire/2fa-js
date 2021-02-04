@@ -14,7 +14,7 @@ const generateTOTP = (secret, window) => {
 	return {totp, prevTotp};
 }
 
-const totp = (token, secret, window_time, prev_token) => {
+const totp = (token, secret, options) => {
 
 	if(!token) {
 		throw new Error(constants.missing_token);
@@ -25,10 +25,10 @@ const totp = (token, secret, window_time, prev_token) => {
 	}
 
 	let window;
-	if(!window_value) {
+	if(!options.window_time) {
 		window = 0;
 	} else {
-		window = window_value;
+		window = options.window_time;
 	}
 
 
@@ -37,7 +37,7 @@ const totp = (token, secret, window_time, prev_token) => {
     }
     for (let errorWindow = -window; errorWindow <= +window; errorWindow++) {
   		const otp = generateTOTP(secret, errorWindow);
-  		if ((!prev_token && token === otp.totp) || (prev_token && token == otp.totp && prev_token == otp.prevTotp)) {
+  		if ((!options.prev_token && token === otp.totp) || (options.prev_token && token == otp.totp && options.prev_token == otp.prevTotp)) {
     		return true;
   		}
   	} 
