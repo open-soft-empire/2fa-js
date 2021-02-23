@@ -5,13 +5,13 @@ const constants = require('../utils/constants');
 
 const generateTOTP = (secret, window) => {
 	const totpcounter = Math.floor(Date.now() / 30000);
-	const totp = hotp(secret, totpcounter + window);
+	const currTotp = hotp(secret, totpcounter + window);
 	let prevTotp;
 	if(prev_token) {
 		const prevtotpcounter = Math.floor((Date.now() - 30000) / 30000);
 		prevTotp = hotp(secret, prevtotpcounter + window);
 	}
-	return {totp, prevTotp};
+	return {currTotp, prevTotp};
 }
 
 const totp = (token, secret, options) => {
@@ -37,7 +37,7 @@ const totp = (token, secret, options) => {
     }
     for (let errorWindow = -window; errorWindow <= +window; errorWindow++) {
   		const otp = generateTOTP(secret, errorWindow);
-  		if ((!options.prev_token && token === otp.totp) || (options.prev_token && token == otp.totp && options.prev_token == otp.prevTotp)) {
+  		if ((!options.prev_token && token === otp.currTotp) || (options.prev_token && token == otp.currTotp && options.prev_token == otp.prevTotp)) {
     		return true;
   		}
   	} 
